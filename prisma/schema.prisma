@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id String @id
+  name String @unique
+  accounts Account[]
+
+  @@map("roles")
+}
+
+model Account {
+  id String @id
+  email String @unique
+  password String
+  name String
+  phone String?
+  role Role @relation(fields: [roleId], references: [id])
+  roleId String 
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  @@map("accounts")
+}
