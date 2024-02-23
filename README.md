@@ -25,5 +25,5 @@ npm run dev
 Fourth, open server host /api-docs to play with the swagger in the browser:
 
 ```bash
-http://localhost:3000/api/docs
+http://localhost:3000/api-docs
 ```
